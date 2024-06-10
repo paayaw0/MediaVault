@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_06_09_195443) do
+ActiveRecord::Schema[8.0].define(version: 2024_06_10_125240) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,55 @@ ActiveRecord::Schema[8.0].define(version: 2024_06_09_195443) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "buckets", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.bigint "data_hub_id", null: false
+    t.integer "parent_bucket_id"
+    t.boolean "private", default: false, null: false
+    t.integer "size", default: 0
+    t.integer "data_object_count", default: 0
+    t.datetime "last_accessed_at"
+    t.string "tags", default: [], array: true
+    t.uuid "unique_identifier", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["data_hub_id"], name: "index_buckets_on_data_hub_id"
+  end
+
+  create_table "data_hubs", force: :cascade do |t|
+    t.string "drive_id", null: false
+    t.integer "storage_quota", default: 15, null: false
+    t.integer "used_storage", default: 0, null: false
+    t.integer "status", default: 0, null: false
+    t.integer "plan_type", default: 0, null: false
+    t.string "region"
+    t.integer "backup_status"
+    t.integer "owner_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "data_objects", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "data_hub_id", null: false
+    t.bigint "bucket_id", null: false
+    t.boolean "private", default: false, null: false
+    t.integer "size", default: 0, null: false
+    t.datetime "last_accessed_at"
+    t.string "tags", default: [], array: true
+    t.string "checksum", null: false
+    t.string "object_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bucket_id"], name: "index_data_objects_on_bucket_id"
+    t.index ["data_hub_id"], name: "index_data_objects_on_data_hub_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "buckets", "data_hubs"
+  add_foreign_key "data_objects", "buckets"
+  add_foreign_key "data_objects", "data_hubs"
 end
