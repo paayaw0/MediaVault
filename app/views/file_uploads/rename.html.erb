@@ -1,0 +1,11 @@
+<h1>Rename</h1>
+<%= form_with model: [@data_hub, @data_object], method: :patch, url: data_hub_file_upload_path(@data_hub, @data_object) do |form| %>
+<p>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  </br>
+  <%= form.label :description %>
+  <%= form.text_area :description %>
+</p>
+  <%= form.submit 'Upload File' %>
+<% end %>

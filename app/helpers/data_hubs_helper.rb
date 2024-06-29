@@ -1,0 +1,2 @@
+module DataHubsHelper
+end

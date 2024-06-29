@@ -1,22 +1,23 @@
 class FileUploadsController < ApplicationController
-  before_action :set_data_object, only: [:show, :edit, :update, :destroy]
+  before_action :set_data_hub
+  before_action :set_data_object, only: [:show, :edit, :update, :destroy, :rename]
 
   def index
-    @data_objects = DataObject.all
+    @data_objects = @data_hub.data_objects
   end
 
   def show
   end
 
   def new
-    @data_object = DataObject.new
+    @data_object = @data_hub.data_objects.new
   end
 
   def create
-    @data_object = DataObject.new(file_upload_params)
+    @data_object = @data_hub.data_objects.new(file_upload_params)
 
     if @data_object.save
-      redirect_to file_uploads_path, notice: 'File uploaded successfully'
+      redirect_to @data_hub, notice: 'File uploaded successfully'
     else
       flash.now[:alert] = 'Oops! Something went wrong. File failed to upload'
       render :new
@@ -26,9 +27,12 @@ class FileUploadsController < ApplicationController
   def edit
   end
 
+  def rename
+  end
+
   def update
     if @data_object.update(file_upload_params)
-      redirect_to file_uploads_path, notice: 'File uploaded successfully'
+      redirect_to @data_hub, notice: 'File uploaded successfully'
     else
       flash.now[:alert] = 'Oops! Something went wrong. File failed to upload'
       render :edit
@@ -37,7 +41,7 @@ class FileUploadsController < ApplicationController
 
   def destroy
     @data_object.destroy
-    redirect_to file_uploads_path, notice: 'File removed successfully'
+    redirect_to @data_hub, notice: 'File removed successfully'
   end
 
 
@@ -55,7 +59,11 @@ class FileUploadsController < ApplicationController
     )
   end
 
+  def set_data_hub
+    @data_hub = DataHub.find(params[:data_hub_id])
+  end
+
   def set_data_object
-    @data_object = DataObject.find(params[:id])
+    @data_object = @data_hub.data_objects.find(params[:id])
   end
 end

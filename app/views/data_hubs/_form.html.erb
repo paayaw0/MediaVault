@@ -1,0 +1,7 @@
+<%= form_with model: data_hub do |form| %>
+<p>
+  <%= form.collection_radio_buttons :plan_type, DataHub::plan_types, :first, :first %>
+
+</p>
+  <%= form.submit 'Create Data Hub' %>
+<% end %>

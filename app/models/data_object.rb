@@ -35,7 +35,7 @@ class DataObject < ApplicationRecord
   validates :file, file_format: true
 
   before_validation do |data_object|
-    data_object.data_hub = DataHub.first
+    data_object.name = file.filename if data_object.name.nil?
     data_object.checksum = file.blob.checksum
     data_object.object_type = file.blob.content_type
   end
