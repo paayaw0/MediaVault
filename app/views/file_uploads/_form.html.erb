@@ -1,0 +1,8 @@
+<h1>Upload Your File</h1>
+<%= form_with model: data_object, url: url do |form| %>
+<p>
+  <%= form.hidden_field :file %>
+  <%= form.file_field :file %>
+</p>
+  <%= form.submit 'Upload File' %>
+<% end %>

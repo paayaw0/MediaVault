@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_06_10_125240) do
+ActiveRecord::Schema[8.0].define(version: 2024_06_11_160009) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -75,7 +75,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_06_10_125240) do
     t.string "name"
     t.text "description"
     t.bigint "data_hub_id", null: false
-    t.bigint "bucket_id", null: false
+    t.bigint "bucket_id"
     t.boolean "private", default: false, null: false
     t.integer "size", default: 0, null: false
     t.datetime "last_accessed_at"

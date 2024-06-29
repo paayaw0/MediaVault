@@ -1,13 +1,13 @@
 class DataHub < ApplicationRecord
   MAX_STORAGE_QUOTA = 15
 
-  enum status: {
+  enum :status, {
     active: 0,
     inactive: 1,
     suspended: 2
   }
 
-  enum plan_type: {
+  enum :plan_type, {
     free: 0,
     premium: 1,
     enterprise: 2,
