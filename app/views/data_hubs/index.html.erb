@@ -4,4 +4,7 @@
   <h2><%= data_hub.drive_id %> <%= link_to 'View', data_hub %> <%= link_to 'Delete', data_hub_path(data_hub), data: { turbo_method: :delete } %> + <%= link_to 'Upload File', new_data_hub_file_upload_path(data_hub) %></h2>
 <% end %>
 
-<p>+ <%= link_to "Create Your DataHub Here", new_data_hub_path %></p>
+<p><%= link_to new_data_hub_path, class: 'btn btn-primary btn-lg' do %>
+  <i class="bi bi-plus-circle-fill"> Create Your DataHub Here </i>
+<% end %>
+</p>
