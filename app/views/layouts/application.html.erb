@@ -18,6 +18,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
               <li>
                 <p>
+                  <!-- i'm cheating here, this will eventually be a session -->
                   <% current_datahub = DataHub.first%>
                   <%= link_to new_data_hub_file_upload_path(current_datahub), class: 'btn btn-primary' do %>
                     <i class="bi bi-cloud-arrow-up-fill"></i>
@@ -26,59 +27,85 @@
                 </p>
               </li>
               </br>
-              <li class="nav-item"><p><%= link_to root_path do %>
-                                        <i class="bi bi-house-fill"></i>
-                                        Home
-                                      <% end %>
-                                   </p>
+              <li class="nav-item">
+                <p>
+                  <%= link_to data_hub_file_uploads_path(current_datahub) do %>
+                    <i class="bi bi-house-fill"></i>
+                    Home
+                  <% end %>
+                </p>
               </li>
-              <li class="nav-item"><p><%= link_to root_path do %>
-                                        <i class="bi bi-hdd-fill"></i>
-                                        Data Hubs
-                                      <% end %>
-                                   </p>
+              <li class="nav-item">
+                <p>
+                  <%= link_to data_hubs_path do %>
+                    <i class="bi bi-hdd-fill"></i>
+                    Data Hubs
+                  <% end %>
+                </p>
               </li>
-              <li class="nav-item"><p><%= link_to root_path do %>
-                                        <i class="bi bi-usb-symbol"></i>
-                                        Connected Devices
-                                      <% end %>
-                                   </p>
+              <li class="nav-item">
+                <p>
+                  <%= link_to '#' do %>
+                    <i class="bi bi-usb-symbol"></i>
+                    Connected Devices
+                  <% end %>
+                </p>
               </li>
-              <li class="nav-item"><p><%= link_to root_path do %>
-                                        <i class="bi bi-share-fill"></i>
-                                        Shared Data
-                                      <% end %>
-                                   </p>
+              <li class="nav-item">
+                <p>
+                  <%= link_to '#' do %>
+                    <i class="bi bi-share-fill"></i>
+                    Shared Data
+                  <% end %>
+                </p>
               </li>
-              <li class="nav-item"><p><%= link_to root_path do %>
-                                        <i class="bi bi-clock-fill"></i>
-                                        Recent
-                                      <% end %>
-                                   </p>
+              <li class="nav-item">
+                <p>
+                  <%= link_to '#' do %>
+                    <i class="bi bi-clock-fill"></i>
+                    Recent
+                  <% end %>
+                </p>
               </li>
-              <li class="nav-item"><p><%= link_to root_path do %>
-                                        <i class="bi bi-star-fill"></i>
-                                        Starred
-                                      <% end %>
-                                   </p>
+              <li class="nav-item">
+                <p>
+                  <%= link_to '#' do %>
+                    <i class="bi bi-star-fill"></i>
+                    Starred
+                  <% end %>
+                </p>
               </li>
-              <li class="nav-item"><p><%= link_to root_path do %>
-                                        <i class="bi bi-trash-fill"></i>
-                                        Trash
-                                      <% end %>
-                                   </p>
+              <li class="nav-item">
+                <p>
+                  <%= link_to '#' do %>
+                    <i class="bi bi-trash-fill"></i>
+                    Trash
+                  <% end %>
+                </p>
               </li>
-              <li class="nav-item"><p><%= link_to root_path do %>
-                                        <i class="bi bi-database-fill"></i>
-                                        Storage
-                                      <% end %>
-                                   </p>
+              <li class="nav-item">
+                <p>
+                  <%= link_to '#' do %>
+                    <i class="bi bi-database-fill"></i>
+                    Storage
+                  <% end %>
+                </p>
+                <div class="progress progress-sm active">
+                  <div class="progress-bar bg-primary progress-bar-striped" role="progressbar"
+                       aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                    <span class="sr-only">40% Complete (success)</span>
+                  </div>
+                </div>
               </li>
-              <li class="nav-item"><p><%= link_to root_path, class: 'btn btn-primary' do %>
-                                         <i class="bi bi-database-fill-up"></i>
-                                         Increase Storage
-                                       <% end %>
-                                   </p>
+              <p style="color: white;">40% of storage used</p>
+              <br>
+              <li class="nav-item">
+                <p>
+                  <%= link_to root_path, class: 'btn btn-primary' do %>
+                    <i class="bi bi-database-fill-up"></i>
+                    Request More Storage
+                  <% end %>
+                </p>
                                   
               </li>
             </ul>
@@ -88,7 +115,7 @@
       <div class="content-wrapper">
         <section class="content-header">
           <div class="container-fluid">
-            <h1 class="text-center">Welcome to MediaVault</h1>
+            <h1 class="text-center">Welcome to <span class="btn btn-lg btn-primary">MediaVault</span></h1>
           <%= yield %>
           </div>    
         </section>  

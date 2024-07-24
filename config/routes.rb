@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   
 
   # Defines the root path route ("/")
-  root "data_hubs#index"
+  root "file_uploads#index"
 end

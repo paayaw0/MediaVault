@@ -17,7 +17,7 @@ class FileUploadsController < ApplicationController
     @data_object = @data_hub.data_objects.new(file_upload_params)
 
     if @data_object.save
-      redirect_to @data_hub, notice: 'File uploaded successfully'
+      redirect_to root_path, notice: 'File uploaded successfully'
     else
       flash.now[:alert] = 'Oops! Something went wrong. File failed to upload'
       render :new
@@ -32,7 +32,7 @@ class FileUploadsController < ApplicationController
 
   def update
     if @data_object.update(file_upload_params)
-      redirect_to @data_hub, notice: 'File uploaded successfully'
+      redirect_to root_path, notice: 'File uploaded successfully'
     else
       flash.now[:alert] = 'Oops! Something went wrong. File failed to upload'
       render :edit
@@ -41,7 +41,7 @@ class FileUploadsController < ApplicationController
 
   def destroy
     @data_object.destroy
-    redirect_to @data_hub, notice: 'File removed successfully'
+    redirect_to root_path, notice: 'File removed successfully'
   end
 
 
@@ -60,6 +60,9 @@ class FileUploadsController < ApplicationController
   end
 
   def set_data_hub
+    # short cut for sessions
+    return @data_hub = DataHub.first if params[:data_hub_id].blank?
+
     @data_hub = DataHub.find(params[:data_hub_id])
   end
 

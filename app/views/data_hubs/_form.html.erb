@@ -1,7 +1,10 @@
 <%= form_with model: data_hub do |form| %>
 <p>
-  <%= form.collection_radio_buttons :plan_type, DataHub::plan_types, :first, :first %>
-
+  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <%= form.collection_radio_buttons :plan_type, DataHub::plan_types, :first, :first do |b| %>
+      <%= b.label(class: "btn btn-#{plan_type_color(b.text)}") { b.radio_button() + b.text  } %>
+    <% end  %>
+  </div>
 </p>
-  <%= form.submit 'Create Data Hub' %>
+  <%= form.submit 'Create Data Hub', class: 'btn btn-md btn-primary' %>
 <% end %>

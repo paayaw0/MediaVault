@@ -1,8 +1,23 @@
-<h1>Upload Your File</h1>
-<%= form_with model: [data_hub, data_object], url: url do |form| %>
-<p>
-  <%= form.hidden_field :file %>
-  <%= form.file_field :file %>
-</p>
-  <%= form.submit 'Upload File' %>
-<% end %>
+<div class="col-md-3">
+  <div class="card card-secondary">
+    <div class="card-header">
+      <h3 class="card-title">Upload Your File</h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+      <%= form_with model: [data_hub, data_object], url: url do |form| %>
+      <div class="card-body">
+        <div class="form-group">
+          <div class="input-group">
+            <div class="custom-file">
+              <%= form.hidden_field :file %>
+              <%= form.file_field :file, class: 'btn btn-sm btn-default' %>
+            </div>
+          </div>
+        </div>
+      <!-- /.card-body -->
+      <%= form.submit 'Submit', class: 'btn btn-secondary' %>
+    <% end %>  
+  </div>
+  <!-- /.card -->
+</div>

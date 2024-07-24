@@ -1,11 +1,19 @@
-<h1>Rename</h1>
-<%= form_with model: [@data_hub, @data_object], method: :patch, url: data_hub_file_upload_path(@data_hub, @data_object) do |form| %>
-<p>
-  <%= form.label :name %>
-  <%= form.text_field :name %>
-  </br>
-  <%= form.label :description %>
-  <%= form.text_area :description %>
-</p>
-  <%= form.submit 'Upload File' %>
-<% end %>
+<div class="card card-primary col-6">
+  <div class="card-header">
+    <h3 class="card-title">Rename</h3>
+  </div>
+  <%= form_with model: [@data_hub, @data_object], method: :patch, url: data_hub_file_upload_path(@data_hub, @data_object) do |form| %>
+    <div class="card-body">
+      <div class="form-group">
+        <p>
+          <%= form.label :name %>
+          <%= form.text_field :name, class: 'form-control' %>
+          </br>
+          <%= form.label :description %>
+          <%= form.text_area :description, class: 'form-control' %>
+        </p>
+      </div>  
+    <%= form.submit 'Submit', class: 'btn btn-md btn-primary' %>
+    </div>
+  <% end %>
+</div>
